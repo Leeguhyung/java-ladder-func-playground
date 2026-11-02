@@ -20,4 +20,18 @@ class NameTest {
         assertThatThrownBy(() -> new Name("sixsix"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("빈 이름이면 예외가 발생한다.")
+    void 빈_이름이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Name(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("공백만 있는 이름이면 예외가 발생한다.")
+    void 공백만_있는_이름이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Name("   "))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
