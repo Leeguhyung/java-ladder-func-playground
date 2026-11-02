@@ -5,10 +5,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class Names {
+    private static final int MINIMUM_COUNT = 2;
+
     private final List<Name> names;
 
     private Names(List<Name> names) {
+        validateMinimumCount(names);
         this.names = names;
+    }
+
+    private void validateMinimumCount(List<Name> names) {
+        if (names.size() < MINIMUM_COUNT) {
+            throw new IllegalArgumentException("참여자는 " + MINIMUM_COUNT + "명 이상이어야 합니다.");
+        }
     }
 
     public static Names from(String input) {
