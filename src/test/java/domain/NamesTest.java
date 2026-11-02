@@ -13,4 +13,11 @@ public class NamesTest {
         assertThatThrownBy(() -> Names.from("neo,brown,"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("참여자가 한 명이면 예외가 발생한다.")
+    void 참여자가_한_명이면_예외가_발생한다() {
+        assertThatThrownBy(() -> Names.from("neo"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
