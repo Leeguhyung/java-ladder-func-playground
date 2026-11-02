@@ -6,8 +6,15 @@ public class Name {
     private final String value;
 
     public Name(String value) {
+        validateNotBlank(value);
         validateLength(value);
         this.value = value;
+    }
+
+    private void validateNotBlank(String value) {
+        if (value.isBlank()) {
+            throw new IllegalArgumentException("이름은 비어 있을 수 없습니다.");
+        }
     }
 
     private void validateLength(String value) {
