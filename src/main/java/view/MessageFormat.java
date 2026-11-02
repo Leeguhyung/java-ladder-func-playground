@@ -8,7 +8,8 @@ public enum MessageFormat {
     INPUT_TARGET("결과를 보고 싶은 사람은?"),
     RESULT_LADDER("사다리 결과"),
     RESULT_TITLE("실행 결과"),
-    RESULT_SEPARATOR(" : ");
+    RESULT_SEPARATOR(" : "),
+    ERROR_PREFIX("[ERROR] ");
 
     private final String message;
 

@@ -84,5 +84,10 @@ public class OutputView {
         return LadderFormat.EMPTY.symbol(); //연결되어있지 않으면 공백 5칸을 반환
     }
 
+    public void printError(String message) {
+        System.out.println(MessageFormat.ERROR_PREFIX.message() + message);
+        System.out.println();
+    }
+
 
 }

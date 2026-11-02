@@ -34,10 +34,18 @@ public class LadderController {
     private void showResults(PlayerPrizes playerPrizes) {
         String target = inputView.readTarget();
         while (!target.equals("all")) { //all이 입력되기 전 까지는 계속해서 결과를 보여준다.
-            outputView.printPlayerPrize(playerPrizes.find(target));
+            showPlayerPrize(playerPrizes, target);
             target = inputView.readTarget();
         }
         outputView.printAllPlayerPrizes(playerPrizes);//all이 입력되면 모든 결과를 보여준다.
+    }
+
+    private void showPlayerPrize(PlayerPrizes playerPrizes, String target) {
+        try { //target에 해당하는 결과를 보여준다.
+            outputView.printPlayerPrize(playerPrizes.find(target)); //target에 해당하는 결과를 찾아서 보여준다.
+        } catch (IllegalArgumentException exception) { //target에 해당하는 결과가 없으면 에러메세지를 보여준다.
+            outputView.printError(exception.getMessage()); //IllegalArgumentException이 발생하면 에러메세지를 보여준다.
+        }
     }
 }
 
