@@ -41,4 +41,13 @@ class PlayerPrizesTest {
         assertThatThrownBy(() -> playerPrizes.find("none"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("참여자 수와 실행 결과 수가 다르면 예외가 발생한다.")
+    void 참여자_수와_결과_수가_다르면_예외가_발생한다() {
+        Prizes lessPrizes = Prizes.from("꽝,5000");
+
+        assertThatThrownBy(() -> PlayerPrizes.of(names, lessPrizes, result))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
