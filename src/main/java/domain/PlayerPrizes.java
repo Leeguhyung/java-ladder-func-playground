@@ -15,7 +15,14 @@ public class PlayerPrizes {
         this.playerPrizes = playerPrizes;
     }
 
+    private static void validateSameSize(Names names, Prizes prizes) {
+        if (names.size() != prizes.size()) {
+            throw new IllegalArgumentException("참여자 수와 실행 결과 수는 같아야 합니다.");
+        }
+    }
+
     public static PlayerPrizes of(Names names, Prizes prizes, LadderResult result) {
+        validateSameSize(names, prizes);
         List<Position> arrivals = result.arrivals(); //result에서 사다리를 타고 내려간 최종 위치들을 가져온다.
         List<PlayerPrize> playerPrizes = new ArrayList<>();//PlayerPrize들을 담는 리스트를 생성한다.
 
