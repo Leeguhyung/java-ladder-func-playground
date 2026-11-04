@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.HashSet;
 
 public class Names {
     private static final int MINIMUM_COUNT = 2;
@@ -10,8 +11,15 @@ public class Names {
     private final List<Name> names;
 
     private Names(List<Name> names) {
+        validateNotDuplicated(names);
         validateMinimumCount(names);
         this.names = names;
+    }
+
+    private void validateNotDuplicated(List<Name> names) {
+        if (new HashSet<>(names).size() != names.size()) {
+            throw new IllegalArgumentException("이름은 중복될 수 없습니다.");
+        }
     }
 
     private void validateMinimumCount(List<Name> names) {
