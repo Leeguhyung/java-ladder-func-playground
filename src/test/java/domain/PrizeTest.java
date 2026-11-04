@@ -13,4 +13,18 @@ public class PrizeTest {
         assertThatThrownBy(() -> new Prize("sixsix"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("빈 결과면 예외가 발생한다.")
+    void 빈_결과면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Prize(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("공백만 있는 결과면 예외가 발생한다.")
+    void 공백만_있는_결과면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Prize("   "))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
