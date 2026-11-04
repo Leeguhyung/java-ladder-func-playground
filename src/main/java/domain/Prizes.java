@@ -13,7 +13,7 @@ public class Prizes {
 
     public static Prizes from(String input) {
         List<Prize> prizes = new ArrayList<>();
-        for (String value : input.split(",")) {
+        for (String value : input.split(",", -1)) { // names와 마찬가지로 -1을 추가하여 끝의 빈값도 버리지않게 처리함.
             prizes.add(new Prize(value.trim()));
         }
         return new Prizes(prizes);
