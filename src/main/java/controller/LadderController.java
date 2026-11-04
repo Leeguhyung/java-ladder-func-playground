@@ -7,6 +7,7 @@ import domain.Names;
 import domain.PlayerPrizes;
 import domain.Prizes;
 import domain.RandomBooleanGenerator;
+import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
@@ -23,15 +24,23 @@ public class LadderController {
     }
 
     public void run() {
-        Names names = inputView.readNames();
-        Prizes prizes = inputView.readPrizes();
-        LadderSize height = inputView.readHeight();
+        Names names = retry(inputView::readNames);
+        Prizes prizes = retry(inputView::readPrizes);
+        LadderSize height = retry(inputView::readHeight);
         Ladder ladder = Ladder.create(height, new LadderSize(names.size()), new RandomBooleanGenerator());
         PlayerPrizes playerPrizes = PlayerPrizes.of(names, prizes, new LadderGame(ladder).play()); //개수검증을 먼저하도록 함 출력전에
         outputView.printLadderResult(names, ladder, prizes);
         showResults(playerPrizes);
     }
 
+    private <T> T retry(Supplier<T> reader) {
+        try {
+            return reader.get();
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            return retry(reader);
+        }
+    }
     private void showResults(PlayerPrizes playerPrizes) {
         String target = inputView.readTarget();
         while (!target.equals("all")) { //all이 입력되기 전 까지는 계속해서 결과를 보여준다.

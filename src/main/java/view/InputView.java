@@ -17,7 +17,7 @@ public class InputView {
     }
 
     public LadderSize readHeight() {
-        return new LadderSize(Integer.parseInt(readLine(MessageFormat.INPUT_HEIGHT)));
+        return new LadderSize(parseNumber(readLine(MessageFormat.INPUT_HEIGHT)));
     }
 
     public String readTarget() {
@@ -31,4 +31,11 @@ public class InputView {
         return input;
     }
 
+    private int parseNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("숫자를 입력해야 합니다.");
+        }
+    }
 }
