@@ -27,8 +27,9 @@ public class LadderController {
         Prizes prizes = inputView.readPrizes();
         LadderSize height = inputView.readHeight();
         Ladder ladder = Ladder.create(height, new LadderSize(names.size()), new RandomBooleanGenerator());
+        PlayerPrizes playerPrizes = PlayerPrizes.of(names, prizes, new LadderGame(ladder).play()); //개수검증을 먼저하도록 함 출력전에
         outputView.printLadderResult(names, ladder, prizes);
-        showResults(PlayerPrizes.of(names, prizes, new LadderGame(ladder).play()));
+        showResults(playerPrizes);
     }
 
     private void showResults(PlayerPrizes playerPrizes) {
