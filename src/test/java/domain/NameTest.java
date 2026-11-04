@@ -34,4 +34,11 @@ class NameTest {
         assertThatThrownBy(() -> new Name("   "))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("값이 같은 이름은 같은 이름으로 취급한다.")
+    void 값이_같은_이름은_같다() {
+        assertThat(new Name("neo")).isEqualTo(new Name("neo"));
+        assertThat(new Name("neo")).hasSameHashCodeAs(new Name("neo"));
+    }
 }

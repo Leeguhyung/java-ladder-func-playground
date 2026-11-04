@@ -20,4 +20,11 @@ public class NamesTest {
         assertThatThrownBy(() -> Names.from("neo"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("이름이 중복되면 예외가 발생한다.")
+    void 이름이_중복되면_예외가_발생한다() {
+        assertThatThrownBy(() -> Names.from("neo,brown,neo"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
